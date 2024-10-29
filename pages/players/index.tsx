@@ -1,7 +1,6 @@
 // Import your layout component
 import Layout from '../../components/layout';
 import '../../app/globals.css'; // Import global styles
-import SearchBar from '../../components/SearchBar'; // Import the SearchBar component
 import React, { useEffect, useState } from 'react';
 import { fetchPlayers, PlayerVersion } from '../../lib/fetchPlayerPlural'; // Import the fetchPlayers function
 import Link from 'next/link'; // Import the Link component

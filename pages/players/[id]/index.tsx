@@ -19,17 +19,9 @@ interface PlayerPageProps {
 const PlayerPage: React.FC<PlayerPageProps> = ({ playerId }) => {
     const [playerData, setPlayerData] = useState<PlayerResponse | null>(null);
     const [loading, setLoading] = useState(true);
-    const [visibleDescriptions, setVisibleDescriptions] = useState<{ [key: string]: boolean }>({});
     const [modifiedAttributes, setModifiedAttributes] = useState<{ [key: string]: number }>({});
     const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
     const [selectedChemistry, setSelectedChemistry] = useState<string>('chemistry3');
-
-    const toggleDescription = (playStyleId: string) => {
-        setVisibleDescriptions(prev => ({
-            ...prev,
-            [playStyleId]: !prev[playStyleId],
-        }));
-    };
 
     const handleChemistryStyleClick = (styleName: string) => {
         if (selectedStyle === styleName) {
@@ -256,10 +248,11 @@ const PlayerPage: React.FC<PlayerPageProps> = ({ playerId }) => {
                 <Link key={index} href={`${version.playerResourceId}`}> {/* Redirect to the other version's page */}
                     <div className={styles.otherVersion}>
                         <div className={styles.overlay}>
-                            <img 
-                                className={styles.versionImage} 
+                            <Image 
                                 src={version.playerCardImages.enNoLaurelBig || mainVersion.playerCardImages.enNoLaurelBig} // Fallback to main version image
                                 alt={version.playerCommonName || `${version.playerFirstName} ${version.playerLastName}`} 
+                                width={200} // specify width
+                                height={300} // specify height
                             />
                         </div>
                     </div>
@@ -1117,253 +1110,7 @@ const PlayerPage: React.FC<PlayerPageProps> = ({ playerId }) => {
         </div>
         <div className={styles.category}>
         <div className={styles.sectionName}>
-            <h3>{playerMainPos === "GK" ? "Speed" : "Defending"}</h3>
-            <h3 style={{ color: getAttributeColor(mainVersion.playerAttributes.def) }}>
-                {mainVersion.playerAttributes.def}
-            </h3>
-            </div>
-            {playerMainPos === "GK" ? (
-                <div>
-                    <div className={styles.attributeItem}>
-                        <strong>Acceleration:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.acceleration !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.acceleration / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.acceleration / 4) : 
-                                      modifiedAttributes.acceleration}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.acceleration + 
-                                    (modifiedAttributes.acceleration !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.acceleration / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.acceleration / 4) : 
-                                         modifiedAttributes.acceleration) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.acceleration + 
-                                        (modifiedAttributes.acceleration !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.acceleration / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.acceleration / 4) : 
-                                             modifiedAttributes.acceleration) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                        <strong>Sprint Speed:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.sprintSpeed !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.sprintSpeed / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.sprintSpeed / 4) : 
-                                      modifiedAttributes.sprintSpeed}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.sprintSpeed + 
-                                    (modifiedAttributes.sprintSpeed !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.sprintSpeed / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.sprintSpeed / 4) : 
-                                         modifiedAttributes.sprintSpeed) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.sprintSpeed + 
-                                        (modifiedAttributes.sprintSpeed !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.sprintSpeed / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.sprintSpeed / 4) : 
-                                             modifiedAttributes.sprintSpeed) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <>
-                    <div className={styles.attributeItem}>
-                        <strong>Interceptions:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.interceptions !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.interceptions / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.interceptions / 4) : 
-                                      modifiedAttributes.interceptions}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.interceptions + 
-                                    (modifiedAttributes.interceptions !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.interceptions / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.interceptions / 4) : 
-                                         modifiedAttributes.interceptions) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.interceptions + 
-                                        (modifiedAttributes.interceptions !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.interceptions / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.interceptions / 4) : 
-                                             modifiedAttributes.interceptions) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                        <strong>Heading Accuracy:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.headingAccuracy !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.headingAccuracy / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.headingAccuracy / 4) : 
-                                      modifiedAttributes.headingAccuracy}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.headingAccuracy + 
-                                    (modifiedAttributes.headingAccuracy !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.headingAccuracy / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.headingAccuracy / 4) : 
-                                         modifiedAttributes.headingAccuracy) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.headingAccuracy + 
-                                        (modifiedAttributes.headingAccuracy !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.headingAccuracy / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.headingAccuracy / 4) : 
-                                             modifiedAttributes.headingAccuracy) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                        <strong>Defensive Awareness:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.defensiveAwareness !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.defensiveAwareness / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.defensiveAwareness / 4) : 
-                                      modifiedAttributes.defensiveAwareness}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.defensiveAwareness + 
-                                    (modifiedAttributes.defensiveAwareness !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.defensiveAwareness / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.defensiveAwareness / 4) : 
-                                         modifiedAttributes.defensiveAwareness) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.defensiveAwareness + 
-                                        (modifiedAttributes.defensiveAwareness !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.defensiveAwareness / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.defensiveAwareness / 4) : 
-                                             modifiedAttributes.defensiveAwareness) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                        <strong>Standing Tackle:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.standingTackle !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.standingTackle / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.standingTackle / 4) : 
-                                      modifiedAttributes.standingTackle}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.standingTackle + 
-                                    (modifiedAttributes.standingTackle !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.standingTackle / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.standingTackle / 4) : 
-                                         modifiedAttributes.standingTackle) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.standingTackle + 
-                                        (modifiedAttributes.standingTackle !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.standingTackle / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.standingTackle / 4) : 
-                                             modifiedAttributes.standingTackle) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                        <strong>Sliding Tackle:</strong>
-                        <div className={styles.attributeValues}>
-                            {modifiedAttributes.slidingTackle !== undefined ? (
-                                <span className={styles.modifiedAttribute}>
-                                    +{selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.slidingTackle / 2) : 
-                                      selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.slidingTackle / 4) : 
-                                      modifiedAttributes.slidingTackle}
-                                </span>
-                            ) : null}
-                            <div style={{ backgroundColor: getAttributeColor(
-                                Math.min(
-                                    mainVersion.playerAttributes.slidingTackle + 
-                                    (modifiedAttributes.slidingTackle !== undefined ? 
-                                        (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.slidingTackle / 2) : 
-                                         selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.slidingTackle / 4) : 
-                                         modifiedAttributes.slidingTackle) : 0), 
-                                    99
-                                )
-                            ) }}>
-                                <p>
-                                    {Math.min(
-                                        mainVersion.playerAttributes.slidingTackle + 
-                                        (modifiedAttributes.slidingTackle !== undefined ? 
-                                            (selectedChemistry === 'chemistry2' ? Math.floor(modifiedAttributes.slidingTackle / 2) : 
-                                             selectedChemistry === 'chemistry1' ? Math.floor(modifiedAttributes.slidingTackle / 4) : 
-                                             modifiedAttributes.slidingTackle) : 0), 
-                                        99
-                                    )}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
-        </div>
-        <div className={styles.category}>
-        <div className={styles.sectionName}>
-            <h3>{playerMainPos === "GK" ? "Positioning" : "Physical"}</h3>
+            <h3>{playerMainPos === "GK" ? "Speed" : "Physical"}</h3>
             <h3 style={{ color: getAttributeColor(mainVersion.playerAttributes.phy) }}>
                 {mainVersion.playerAttributes.phy}
             </h3>

@@ -11,7 +11,7 @@ import Image from 'next/image';
 const PlayerGrid: React.FC = () => {
     const [allPlayers, setAllPlayers] = useState<{ [key: string]: PlayerVersion[] }>({});
     const [displayedPlayers, setDisplayedPlayers] = useState<PlayerVersion[]>([]);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm] = useState('');
 
     const apiUrls = {
         latest: 'https://api.futlaurel.com/api/25/players?latest=true',
@@ -39,7 +39,7 @@ const PlayerGrid: React.FC = () => {
 
     useEffect(() => {
         fetchAllPlayerData();
-    }, []);
+    }, [fetchAllPlayerData]);
 
     useEffect(() => {
         if (searchTerm) {
@@ -50,7 +50,7 @@ const PlayerGrid: React.FC = () => {
         } else {
             setDisplayedPlayers(allPlayers.latest || []);
         }
-    }, [allPlayers.latest, displayedPlayers]);
+    }, [allPlayers.latest, displayedPlayers, searchTerm]);
 
     return (
         <Layout> {/* Wrap the content with Layout */}
@@ -80,11 +80,12 @@ const PlayerGrid: React.FC = () => {
             <div className="grid">
                 {Array.isArray(displayedPlayers) && displayedPlayers.map((player) => (
                     <a key={player.playerResourceId} href={`/players/${player.playerResourceId}`} className="player-card">
-                        <img 
+                        <Image 
                             src={player.playerCardImages.enNoLaurelBig} 
                             alt={player.playerCommonName || `${player.playerFirstName} ${player.playerLastName}`} 
                             loading="lazy"
-                            srcSet={`${player.playerCardImages.enNoLaurelBig} 1x, ${player.playerCardImages.enNoLaurelBig.replace('.jpg', '@2x.jpg')} 2x`}
+                            width={200} // specify width
+                            height={300} // specify height
                         /> 
                     </a>
                 ))}
