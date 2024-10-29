@@ -1,0 +1,105 @@
+/* components/Layout.module.css */
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 110vh; /* Ensure the layout is at least 110% of the viewport height */
+}
+
+.header {
+    background-color: var(--dark);
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 55px;
+    width: 100%;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: start; /* Center content horizontally */
+    width: 50%;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding: 0 10px; /* Add padding for spacing */
+    height: 55px;
+}
+
+.menuIcon, .searchIcon {
+    cursor: pointer;
+    margin: 0 10px; /* Add some margin for spacing */
+    flex: 0 0 auto; /* Prevent icons from growing */
+}
+
+.navLinks {
+    display: flex;
+    gap: 20px;
+    flex-grow: 1; /* Allow nav links to grow and fill space */
+    justify-content: center; /* Center nav links */
+}
+
+.showMenu {
+    display: block;
+}
+
+.searchBarHeader {
+  width: 600px !important;
+  height: 100% !important;
+}
+
+.main {
+    flex: 1; /* Allow the main content to grow and fill the space */
+}
+
+.footer {
+    background-color: var(--dark);
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    flex: 0 0 auto; /* Prevent logo from growing */
+}
+
+
+
+.searchBarPopup {
+    width: fit-content;
+    position: absolute;
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Adjust back by half of its own width and height */
+    z-index: 1000;
+}
+
+@media (max-width: 1024px) {
+    .searchBarHeader {
+        width: 400px !important;
+      }
+}
+
+@media (max-width: 768px) {
+    .searchBarHeader {
+        width: calc(100vw - 20px) !important;
+      }
+
+    .menuIcon, .searchIcon {
+        display: block;
+    }
+
+    .navLinks {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}

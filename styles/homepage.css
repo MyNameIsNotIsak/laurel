@@ -1,0 +1,121 @@
+/* player-search/app/styles/playerGrid.css */
+
+.player-grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content horizontally */
+    padding: 20px; /* Add some padding */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive grid */
+    gap: 5px; /* Space between grid items */
+    width: 100%; /* Full width */
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content inside the card */
+    text-decoration: none; /* Remove underline from links */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+.player-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.player-card img {
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: -35px;
+}
+.searchBarHeader {
+    width: 80%;
+    height: 100% !important;
+  }
+
+  .logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+    padding-bottom: 2%;
+  }
+
+  .laurel-logo {
+    width: 400px;
+  }
+
+  .bg-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+  }
+
+  .laurel-bg {
+    position: relative;
+    z-index: -1;
+    width: 70%;
+    height: fit-content;
+    top: -150px;
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.2) 20%, transparent 50%);
+    mask-size: 100% 100%;
+    opacity: 0.5;
+    mask-position: top;
+    z-index: -1;
+    animation: moveTop 2s forwards; /* Add animation */
+  }
+
+  .searchBarHomePage {
+    width: 80%;
+  }
+
+  .searchBarHomePage .searchBar input {
+    width: 100%;
+    height: 60px !important;
+    color: var(--AccentText);
+  }
+
+  .player-options-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .playerOptions {
+    width: 80%;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .playerOptions button {
+    padding: 10px;
+    width: fit-content;
+    border-radius: 10px;
+    background-color: var(--dark);
+    color: var(--AccentText);
+    outline: solid 1px var(--border);
+    font-weight: 500;
+  }
+
+  .playerOptions button:hover {
+    outline: solid 1px var(--BlueBorder);
+  }
+
+@keyframes moveTop {
+    from {
+        top: -70px;
+    }
+    to {
+        top: -150px;
+    }
+}

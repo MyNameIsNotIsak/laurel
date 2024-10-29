@@ -1,0 +1,47 @@
+@font-face {
+  font-family: cruyffsansexpanded;
+  font-weight: 900;
+  src: url('./CruyffSansExpanded-Heavy.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 700;
+  src: url('./CruyffSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 500;
+  src: url('./CruyffSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 400;
+  src: url('./CruyffSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 300;
+  src: url('./CruyffSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 700;
+  src: url('./CruyffSansCondensedBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 600;
+  src: url('./CruyffSansCondensedMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 400;
+  src: url('./CruyffSansCondensedRegular.ttf') format('truetype');
+}

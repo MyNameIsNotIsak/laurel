@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+/* styles/globals.css */
+:root {
+  --blue: #00ca51;
+  --black: #050514;
+  --dark: #090720;
+  --border: #141131;
+  --BlueBorder: #07f667;
+  --AccentText: #b2a1c9;
+}
+
+:root {
+  --base-font-size: 16px; /* Default base font size */
+}
+
+:root {
+  --card-width: 400px; /* Default card width */
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: var(--dark);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--BlueBorder);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+@media (max-width: 1550px) {
+  :root {
+    --card-width: 300px; /* Adjust card width for smaller viewports */
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --card-width: 272px; /* Adjust card width for smaller viewports */
+  }
+}
+
+@media (max-width: 100px) {
+  :root {
+    --card-width: 264px; /* Adjust card width for smaller viewports */
+  }
+}
+
+@font-face {
+  font-family: cruyffsansexpanded;
+  font-weight: 900;
+  src: url('../app/fonts/CruyffSansExpanded-Heavy.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 700;
+  src: url('../app/fonts/CruyffSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 500;
+  src: url('../app/fonts/CruyffSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 400;
+  src: url('../app/fonts/CruyffSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsans;
+  font-weight: 300;
+  src: url('../app/fonts/CruyffSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 700;
+  src: url('../app/fonts/CruyffSansCondensedBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 600;
+  src: url('../app/fonts/CruyffSansCondensedMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: cruyffsanscondensed;
+  font-weight: 400;
+  src: url('../app/fonts/CruyffSansCondensedRegular.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: cruyffsans, Arial, sans-serif;
+  background-color: var(--black);
+  color: var(--AccentText);
+}
+
+input {
+  color: var(--AccentText);
+}
+
+
+.search-container {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.search-bar {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: var(--dark);
+  height: 30px;
+}
+
+.search-results-popup {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--black);
+  border: 1px solid var(--border);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 12px;
+  width: 100%;
+  padding: 10px;
+}
+
+.search-result-item {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  max-height: 70px;
+  background-color: var(--dark);
+  overflow: hidden;
+}
+
+.search-result-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  width: 100%;
+  height: 70px;
+}
+
+.search-result-image-container {
+  width: fit-content;
+  height: fit-content;
+}
+
+.search-result-image {
+  margin-left: -30px;
+  margin-top: -30px;
+  position: absolute;
+  height: 180px;
+}
+
+.player-portrait-image {
+  margin-left: 0;
+  margin-top: 0;
+  position: absolute;
+  height: 70px;
+}
+
+.search-result-info {
+  height: 100%;
+  width: fit-content;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  text-wrap: nowrap;
+}
+
+.search-result-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  margin-left: 90px;
+}
+
+.player-common-name {
+  color: var(--blue);
+}
+
+.search-result-link {
+  width: 100%;
+}
+
+.first-name {
+  font-weight: 500;
+  font-size: 0.7em;
+  color: var(--AccentText);
+  line-height: 1;
+  display: block;
+}
+
+.last-name {
+  color: var(--blue);
+  line-height: 0.7;
+  display: block;
+}
+
+.search-result-background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.rarity-image {
+  position: absolute;
+  height: 600%;
+  right: -50px;
+  top: -200%;
+  mask-image: linear-gradient(to right, transparent 5%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.7) 50%, black 80%);
+  -webkit-mask-image: linear-gradient(to right, transparent 12%, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.35) 80%, black 100%);
+}
+
+.search-result-rating-container {
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-weight: bold;
+  width: 100%;
+}
+
+.search-result-rating {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 600;
+  font-family: 'CruyffSansCondensed';
+  color: white;
+}
+
+.searchBar input:focus {
+  outline: 1px solid var(--blue);
+}
+
+
+
+
+
