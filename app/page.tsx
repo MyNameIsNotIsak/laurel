@@ -8,9 +8,7 @@ import '../styles/homepage.css'; // Import specific styles for player grid
 import { fetchPlayers, PlayerVersion } from '../lib/fetchPlayerPlural'; // Ensure correct import
 import laurelLogo from '../images/logo/laurel-logo-green.png';
 import laurelBG from '../images/logo/laurel-bg.png';
-import searchActivityIcon from '../images/icons/search_activity.svg';
-import starIcon from '../images/icons/star.svg';
-import releaseAlertIcon from '../images/icons/release_alert.svg';
+import Image from 'next/image';
 
 const PlayerGrid: React.FC = () => {
     const [allPlayers, setAllPlayers] = useState<{ [key: string]: PlayerVersion[] }>({});
@@ -54,15 +52,15 @@ const PlayerGrid: React.FC = () => {
         } else {
             setDisplayedPlayers(allPlayers.latest || []);
         }
-    }, [searchTerm]);
+    }, [allPlayers.latest, displayedPlayers]);
 
     return (
         <Layout> {/* Wrap the content with Layout */}
             <div className="logo-container">
-                <img src={laurelLogo.src} alt="Laurel Logo" className="laurel-logo" />
+                <Image src={laurelLogo.src} alt="Laurel Logo" className="laurel-logo" width={400} height={300} />
             </div>
             <div className="bg-container">
-                <img src={laurelBG.src} alt="Laurel Logo" className="laurel-bg" />
+                <Image src={laurelBG.src} alt="Laurel Logo" className="laurel-bg" width={400} height={300} />
             </div>
             <div className="player-grid-container">
                 <SearchBar className="searchBarHomePage"/>
